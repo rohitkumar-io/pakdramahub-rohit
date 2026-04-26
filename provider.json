@@ -1,0 +1,8 @@
+{
+    "name": "Pak Drama Hub",
+    "author": "rohitkumar-io",
+    "url": "https://raw.githubusercontent.com/rohitkumar-io/Pakdramahub-rohit/main/movies.json",
+    "description": "Latest Pakistani Dramas - Automated Collection",
+    "version": 1,
+    "type": "tvSeries"
+}
