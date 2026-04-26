@@ -1,25 +1,31 @@
 name: Update Drama List
+
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *' # हर रात 12 बजे अपने आप चलेगा
+  workflow_dispatch: # बटन दबाकर खुद चलाने के लिए
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: Install
+          
+      - name: Install dependencies
         run: pip install yt-dlp
-      - name: Run
+        
+      - name: Run Scraper
         run: python scraper.py
-      - name: Push
+        
+      - name: Commit and Push changes
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
+          git config --global user.name 'rohitkumar-io'
+          git config --global user.email 'rohitkumar-io@users.noreply.github.com'
           git add movies.json
-          git commit -m "Update" || exit 0
+          git commit -m "Auto Update: Latest Dramas" || exit 0
           git push
